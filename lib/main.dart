@@ -19,6 +19,8 @@ class XylophoneApp extends StatelessWidget {
     Colors.deepPurple
   ];
 
+  final List<int> keys = [1, 2, 3, 4, 5, 6, 7];
+
   Widget buildKey(key) {
     return Expanded(
       child: FlatButton(
@@ -38,15 +40,18 @@ class XylophoneApp extends StatelessWidget {
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              buildKey(1),
-              buildKey(2),
-              buildKey(3),
-              buildKey(4),
-              buildKey(5),
-              buildKey(6),
-              buildKey(7),
-            ],
+            children: keys
+                .map<Widget>(
+                  (e) => Expanded(
+                    child: FlatButton(
+                      color: colorArr[e - 1],
+                      onPressed: () {
+                        playSound(e);
+                      },
+                    ),
+                  ),
+                )
+                .toList(),
           ),
         ),
       ),
