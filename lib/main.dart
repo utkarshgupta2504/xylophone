@@ -14,14 +14,15 @@ class XylophoneApp extends StatelessWidget {
     Colors.orange,
     Colors.yellow,
     Colors.green,
+    Colors.teal,
     Colors.blue,
     Colors.indigo,
     Colors.deepPurple
   ];
 
-  final List<int> keys = [1, 2, 3, 4, 5, 6, 7];
+  final List<int> keys = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  Widget buildKey(key) {
+  Expanded buildKey(key) {
     return Expanded(
       child: FlatButton(
         color: colorArr[key - 1],
@@ -40,18 +41,7 @@ class XylophoneApp extends StatelessWidget {
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: keys
-                .map<Widget>(
-                  (e) => Expanded(
-                    child: FlatButton(
-                      color: colorArr[e - 1],
-                      onPressed: () {
-                        playSound(e);
-                      },
-                    ),
-                  ),
-                )
-                .toList(),
+            children: keys.map<Widget>((e) => buildKey(e)).toList(),
           ),
         ),
       ),
